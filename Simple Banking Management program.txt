@@ -1,5 +1,9 @@
 // 25th September 2020
 // Simple Banking Transaction System
+#include <iostream>
+#include <cstdlib>
+
+using namespace std;
 
 class account
 {
@@ -63,6 +67,63 @@ class savingsAcc : public account
           {
                cout << "Compound Interest applied on your Balance = " << cmpndInt << endl;
           }
+          void isSavingsAcc()
+          {
+               int y;
+               while(y != 6)
+               {
+                    cout << "*********************************************************************\n";
+                    cout << "Enter the following number for operations you want to perform" << endl;
+                    cout << "1. To display account holder information" << endl;
+                    cout << "2. To deposit money\n";
+                    cout << "3. To comply compound interest\n";
+                    cout << "4. To withdraw money\n";
+                    cout << "5. To inquiry of available amount\n";
+                    cout << "6. To exit\nEnter the desired number = ";
+                    cin >> y;
+                    cout << "*********************************************************************\n";
+                    switch(y)
+                    {
+                         case 1:
+                         {
+                              putInfo();
+                              break;
+                         }
+                         case 2:
+                         {
+                              deposit();
+                              break;
+                         }
+                         case 3:
+                         {
+                              compoundInt();
+                              putCmpnd();
+                              putBalance();
+                              break;
+                         }
+                         case 4:
+                         {
+                              withdrawl();
+                              break;
+                         }
+                         case 5:
+                         {
+                              putBalance();
+                              break;
+                         }
+                         case 6:
+                         {
+                              cout << "Thank you for using our Banking Services...\n\n";
+                              exit(0);
+                              break;
+                         }
+                         default:
+                         {
+                              cout << "Invalid Choice!\n\n";
+                         }
+                    }
+               }
+          }
 
 };
 class currentAcc : public account
@@ -100,131 +161,89 @@ class currentAcc : public account
                cout << "Your Monthly Average Balance = 5000 INR" << endl;
                cout << "You're available balance after penalty = " << MaB() << endl;
           }
+          void isCurrent()
+          {
+               int y;
+               while(y != 7)
+               {
+                    cout << "*********************************************************************\n";
+                    cout << "Enter the following number for operations you want to perform" << endl;
+                    cout << "1. To display account holder information" << endl;
+                    cout << "2. To deposit money\n";
+                    cout << "3. To withdraw money\n";
+                    cout << "4. To withdraw money by cheque\n";
+                    cout << "5. To inquiry of available amount\n";
+                    cout << "6. To check Monthly Average Balance\n";
+                    cout << "7. To exit\nEnter the desired number = ";
+                    cin >> y;
+                    cout << "*********************************************************************\n";
+                    switch(y)
+                    {
+                         case 1 :
+                         {
+                              putInfo();
+                              break;
+                         }
+                         case 2:
+                         {
+                              deposit();
+                              break;
+                         }
+                         case 3:
+                         {
+                              withdrawl();
+                              break;
+                         }
+                         case 4:
+                         {
+                              chequeWithdrawl();
+                              break;
+                         }
+                         case 5:
+                         {
+                              putBalance();
+                              break;
+                         }
+                         case 6:
+                         {
+                              MaB();
+                              putMaB();
+                              break;
+                         }
+                         case 7:
+                         {
+                              exit(0);
+                              break;
+                         }
+                         default:
+                         {
+                              cout << "Invalid Choice!\n\n";
+                         }
+                    }
+               }
+          }
 };
-int main()
+int main()  // Driver code
 {
      char x;
      savingsAcc a1;
      currentAcc a2;
      a1.getUserInfo("Sachin", 7770008, "Savings", 25000);
-     a2.getUserInfo("Rupender", 4515555, "Current", 2500);
+     a2.getUserInfo("Rupender", 4515555, "Current", 50000);
      cout << "What's your Account type? Enter 's' for Savings while 'c' for Current Account = ";
      cin >> x;
+     cout << "\n";
      if(x == 's')
      {
-          int x;
-          while(x != 6)
-               {
-                   cout << "Enter the following number for operations you want to perform" << endl;
-                   cout << "1. To display account holder information" << endl;
-                   cout << "2. To deposit money\n";
-                   cout << "3. To comply compound interest\n";
-                   cout << "4. To withdraw money\n";
-                   cout << "5. To inquiry of available amount\n";
-                   cout << "6. To exit\nEnter the desired number = ";
-                   cin >> x;
-                   cout << "\n";
-                   switch(x)
-                   {
-                        case 1:
-                             {
-                                  a1.putInfo();
-                                  break;
-                             }
-                             case 2:
-                              {
-                                   a1.deposit();
-                                   break;
-                              }
-                             case 3:
-                              {
-                                   a1.compoundInt();
-                                   a1.putCmpnd();
-                                   a1.putBalance();
-                                   break;
-                              }
-                              case 4:
-                              {
-                                   a1.withdrawl();
-                                   break;
-                              }
-                              case 5:
-                              {
-                                   a1.putBalance();
-                                   break;
-                              }
-                              case 6:
-                              {
-                                   cout << "Thank you for using our Banking Services...\n\n";
-                                    exit(0);
-                                    break;
-                              }
-                              default:
-                              {
-                                   cout << "Invalid Choice!";
-                              }
-                    }
-
-          }
+          a1.isSavingsAcc();
      }
      else if(x == 'c')
      {
-          int x;
-          while(x != 7)
-               {
-                   cout << "Enter the following number for operations you want to perform" << endl;
-                   cout << "1. To display account holder information" << endl;
-                   cout << "2. To deposit money\n";
-                   cout << "3. To withdraw money\n";
-                   cout << "4. To withdraw money by cheque\n";
-                   cout << "5. To inquiry of available amount\n";
-                   cout << "6. To check Monthly Average Balance\n";
-                   cout << "7. To exit\nEnter the desired number = ";
-                   cin >> x;
-                   switch(x)
-                   {
-                        case 1 :
-                             {
-                                  a2.putInfo();
-                                  break;
-                             }
-                             case 2:
-                              {
-                                   a2.deposit();
-                                   break;
-                              }
-                              case 3:
-                              {
-                                   a2.withdrawl();
-                                   break;
-                              }
-                              case 4:
-                              {
-                                   a2.chequeWithdrawl();
-                                   break;
-                              }
-                              case 5:
-                              {
-                                   a2.putBalance();
-                                   break;
-                              }
-                              case 6:
-                              {
-                                   a2.MaB();
-                                   a2.putMaB();
-                                   break;
-                              }
-                              case 7:
-                              {
-                                    exit(0);
-                                    break;
-                              }
-                              default:
-                              {
-                                   cout << "Invalid Choice!";
-                              }
-                    }
-
-          }
+          a2.isCurrent();
      }
+     else
+     {
+          cout << "Invalid character!\n\n";
+     }
+     return 0;
 }
