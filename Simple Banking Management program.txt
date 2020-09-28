@@ -2,27 +2,26 @@
 // Simple Banking Transaction System
 #include <iostream>
 #include <cstdlib>
+#include <cstring>
 
 using namespace std;
 
 class account
 {
      protected:
-          char *name;
+          string name;
           int accNo;
-          char *accType;
-          float balance;
+          string accType;
+          double balance;
      public:
-          void getUserInfo(char *a, int b, char *c, float d)
+          account() { }
+          account(string a, int b, string c, double d) :  name(a), accNo(b), accType(c), balance(d)
           {
-               name = a;
-               accNo = b;
-               accType = c;
-               balance = d;
+
           }
           void deposit()
           {
-               float tempBalance;
+               double tempBalance;
                cout << "Enter the amount to be deposited = ";
                cin >> tempBalance;
                balance += tempBalance;
@@ -30,7 +29,7 @@ class account
           }
           void withdrawl()
           {
-               float withdrawlBalance;
+               double withdrawlBalance;
                cout << "Enter the amount to be withdrawn = ";
                cin >> withdrawlBalance;
                balance -= withdrawlBalance;
@@ -53,9 +52,17 @@ class savingsAcc : public account
      protected:
           float rate, n, t, cmpndInt;
      public:
+          savingsAcc() { }
+          savingsAcc(string a, int b, string c, float d)
+          {
+               name = a;
+               accNo = b;
+               accType = c;
+               balance = d;
+          }
           float compoundInt()
           {
-               cout << "Enter the Rate, number of times interest applied per unit time and time = ";
+               cout << "\nEnter the Rate, number of times interest applied per unit time and time = ";
                cin >> rate >> n >> t;
                rate = rate/100;
                float x = 1.0 + (rate/n);
@@ -131,6 +138,14 @@ class currentAcc : public account
      protected:
           int chequeNo;
      public:
+          currentAcc() { }
+          currentAcc(string a, int b, string c, float d)
+          {
+               name = a;
+               accNo = b;
+               accType = c;
+               balance = d;
+          }
           void chequeWithdrawl()
           {
                float withdrawlBalance;
@@ -223,13 +238,11 @@ class currentAcc : public account
                }
           }
 };
-int main()  // Driver code
+int main()
 {
      char x;
-     savingsAcc a1;
-     currentAcc a2;
-     a1.getUserInfo("Sachin", 7770008, "Savings", 25000);
-     a2.getUserInfo("Rupender", 4515555, "Current", 50000);
+     savingsAcc a1("Sachin", 7770008, "Savings", 25000);
+     currentAcc a2("Rupender", 4515555, "Current", 50000);
      cout << "What's your Account type? Enter 's' for Savings while 'c' for Current Account = ";
      cin >> x;
      cout << "\n";
