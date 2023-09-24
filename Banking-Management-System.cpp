@@ -14,10 +14,16 @@ class account
           string accType;
           double balance;
      public:
-          account() { }
-          account(string a, int b, string c, double d) :  name(a), accNo(b), accType(c), balance(d)
+          account()
           {
-
+               cout << "Enter the name of account holder = ";
+               cin >> name;
+               cout << "Enter the account number = ";
+               cin >> accNo;
+               cout << "Enter the type of account (savings/current) = ";
+               cin >> accType;
+               cout << "Enter the amount in account = ";
+               cin >> balance;
           }
           void deposit()
           {
@@ -241,8 +247,8 @@ class currentAcc : public account
 int main()
 {
      char x;
-     savingsAcc a1("Sachin", 7770008, "Savings", 25000);
-     currentAcc a2("Rupender", 4515555, "Current", 50000);
+     savingsAcc a1();
+     currentAcc a2();
      cout << "What's your Account type? Enter 's' for Savings while 'c' for Current Account = ";
      cin >> x;
      cout << "\n";
